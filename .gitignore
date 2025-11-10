@@ -1,0 +1,42 @@
+# -------------------------------------------------------------------
+# Archivos de VS Code
+# -------------------------------------------------------------------
+# Configuración del espacio de trabajo
+.vscode/*
+# No ignorar settings.json si se quiere compartir la configuración básica
+!.vscode/settings.json
+# No ignorar extensions.json si se quiere compartir extensiones recomendadas
+!.vscode/extensions.json
+# Ignorar archivos específicos generados por VS Code
+.vscode/*.log
+.vscode/*.bak
+.vscode/*.suo
+.vscode/*.user
+.vscode/*.jsc
+
+# -------------------------------------------------------------------
+# Entornos y Dependencias (Generales)
+# -------------------------------------------------------------------
+# Ignorar directorios de entorno virtual
+venv/
+env/
+/venv
+/env
+
+# Directorios de Python creados por pip, conda, etc.
+__pycache__/
+*.pyc
+*.pyd
+*.so
+
+# Paquetes de instalación de wheel (ruedas)
+*.whl
+
+# -------------------------------------------------------------------
+# Archivos de Sistema Operativo
+# -------------------------------------------------------------------
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
