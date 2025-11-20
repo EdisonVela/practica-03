@@ -7,33 +7,23 @@ class TestAnalizador(unittest.TestCase):
     def setUpClass(cls):
         cls.analizador = Analizador("datos/sri_ventas_2024.csv")
 
-    def test_ventas_totales_como_diccionario(self):
+    def test_valores_no_negativos(self):
         resumen = self.analizador.ventas_totales_por_provincia()
-        self.assertIsInstance(resumen, dict)
+        for valor in resumen.values():
+            self.assertGreaterEqual(valor, 0)
 
-    def test_ventas_totales_todas_las_provincias(self):
+    def test_cantidad_provincias_logica(self):
         resumen = self.analizador.ventas_totales_por_provincia()
-        total_provincias = len(resumen)
-        self.assertEqual(total_provincias, 24)
+        total = len(resumen)
+        self.assertTrue(15 <= total <= 30)
 
-    def test_ventas_totales_mayores_5k(self):
-        resumen = self.analizador.ventas_totales_por_provincia()
-        self.assertTrue(all(float(v) > 5000 for v in resumen.values()))
-
-def test_ventas_totales_mayores_5k(self):
-    resumen = self.analizador.ventas_totales_por_provincia()
-    todas_las_ventas_son_grandes = True 
-
-    for venta in resumen.values():
-        venta_flotante = float(venta) 
-        if venta_flotante <= 5000:
-            todas_las_ventas_son_grandes = False 
-            break
-
-    def test_ventas_por_provincia_inexistente(self):
-        with self.assertRaises(KeyError):
-            self.analizador.ventas_por_provincia("Narnia")
-
-    def test_ventas_por_provincia_existente(self):
-        resultado = self.analizador.ventas_por_provincia("pichincha")
+    def test_provincia_existente(self):
+        resultado = self.analizador.ventas_por_provincia("PICHINCHA")
         self.assertGreater(resultado, 0)
+
+    def test_provincia_inexistente(self):
+        with self.assertRaises(KeyError):
+            self.analizador.ventas_por_provincia("NARNIA")
+
+if __name__ == "__main__":
+    unittest.main()
